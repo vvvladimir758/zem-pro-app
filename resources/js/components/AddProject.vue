@@ -21,6 +21,9 @@
   (изображение которое стоит сейчас , чтобы обновить просто загрузите другое)
   </p>
   <img :src="getImgUrl()" title="" />
+  <br>
+  удалить изображение 
+  <input type="checkbox" v-model="form.delImg" name="delImg">
   <br><br>
   </div>
   
@@ -50,7 +53,8 @@ export default {
     return {
      form:{
      title:'',
-     description:''
+     description:'',
+     delImg:false
      },
       file: '',
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),  
@@ -117,6 +121,7 @@ export default {
                 if(this.mode == 'edit')
                  {
                   url = '/project/'+this.projectData.id;
+                  data.append('delImg', this.form.delImg); 
                   data.append('_method','patch');
                  }
                 

@@ -17,7 +17,7 @@ class TimeSpentFactory extends Factory
     public function definition(): array
     {
         return [
-            'time_spent'       => date('H:i:s', rand(1,54000)),
+            'time_spent'       => date('H:i', rand(1,54000)),
             'description'     => $this->faker->text(300),
         ];
     }

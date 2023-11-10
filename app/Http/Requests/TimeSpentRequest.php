@@ -16,9 +16,10 @@ class TimeSpentRequest extends FormRequest
 
     public function rules(): array
     {
+        //date_format:H:i
         return [
-            'time_spent'  => 'required|date_format:H:i',
-            'description' => 'required|max:200'
+            'time_spent'  => 'required|min:5|max:8',
+            'description' => 'required|max:400'
         ];
     }
     
@@ -26,7 +27,7 @@ class TimeSpentRequest extends FormRequest
     {
         return [
             'description.required'    => 'Укажите описание работ',
-            'description.max'         => 'Слишком большое описание (до 200 символов)',
+            'description.max'         => 'Слишком большое описание (до 400 символов)',
             'time_spent'              => 'Укажите время',
         ];
     }

@@ -23,7 +23,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'description' => 'required|max:200'
+            'description' => 'required|max:400'
         ];
     }
     
@@ -32,7 +32,7 @@ class TaskRequest extends FormRequest
         return [
             'title.required' => 'Необходимо указать название',
             'description.required'    => 'Укажите описание задачи',
-            'description.max'      => 'Слишком большое описание (до 200 символов)'
+            'description.max'      => 'Слишком большое описание (до 400 символов)'
         ];
     }
 }

@@ -10,7 +10,7 @@
   <input type="text" v-model="form.title" name="title" class="form-control" placeholder="Введите название задачи">
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Описание задачи</label>
+  <label for="exampleFormControlTextarea1" class="form-label">Описание задачи*</label>
   <textarea name="desription" v-model="form.description" class="form-control" rows="3"></textarea>
 </div>
 

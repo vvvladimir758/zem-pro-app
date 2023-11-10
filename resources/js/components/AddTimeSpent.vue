@@ -1,6 +1,6 @@
 <template>
 <div class="container mt-5">
-<form id="addTimesForm" class="row g-1" @submit="formSubmit" enctype="multipart/form-data">
+<form id="addTSForm" class="row g-1" @submit="formSubmit" enctype="multipart/form-data">
 <input type="hidden" name="_token" :value="csrf">
 <h2 class="mt-5">Потраченное время</h2>
 <div id="errMsgTs" v-show="errMsgVisible" class="alert alert-danger" role="alert">
@@ -47,7 +47,8 @@ export default {
   },
   props:{
   mode:'',
-  taskData:{},
+  tsData:{},
+  ts_id:null,
   task_id:null,
   },
   created() {
@@ -64,17 +65,21 @@ export default {
 	 
 	watch: {
 		mode(val){
-		if(val == 'create'){
-		this.form.title = '';
-        this.form.description = '';
-		document.getElementById('addTaskForm').reset();
-		}
-		
-		if(val == 'edit'){
+			if(val == 'create'){
+			this.form.time_spent = '';
+	        this.form.description = '';
+			document.getElementById('addTSForm').reset();
+			}
+			
+			if(val == 'edit'){
+			this.loadData();
+			}
+			
+		},
+		tsData(){
+		document.getElementById('addTSForm').reset();
 		this.loadData();
 		}
-		
-		},
 	},	
 	
 
@@ -83,13 +88,9 @@ export default {
                 this.file = e.target.files[0];
             },
   loadData(){
-   this.form.title = this.taskData.title;
-   this.form.description = this.taskData.description;
-  
+        this.form.time_spent = this.tsData.time_spent;
+        this.form.description = this.tsData.description; 
   },    
-  getImgUrl() {
-			  return'/storage/'+ this.projectData.image.image_path ;
-			},
 			
      close(){
             for(var i=0; i<document.getElementsByClassName('vsp-close__x').length; ++i)
@@ -109,8 +110,11 @@ export default {
                 }
                 
                 let data = new FormData();
-
+                
+              
+                
                 data.append('time_spent', this.form.time_spent);
+                console.log(this.form.time_spent);
                 data.append('description', this.form.description); 
                 data.append('task_id', this.$props.task_id);
                 
@@ -119,7 +123,9 @@ export default {
                 var url = '/time_spent';
                 if(this.mode == 'edit')
                  {
-                  url = '/time_spent/'+this.ts.id;
+                  url = '/time_spent/'+this.ts_id;
+                  
+                  data.append('id',this.ts_id);
                   data.append('_method','patch');
                  }
                 
@@ -128,12 +134,7 @@ export default {
           
                     
                     appObj.close();
-                    
-                     if(appObj.mode != 'edit')
-                    { 
-                    document.getElementById('addTimesForm').reset();
-                     }  
-                     
+                    document.getElementById('addTSForm').reset();
                      appObj.$emit('modified');   
 
                      

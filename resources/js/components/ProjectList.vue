@@ -11,7 +11,7 @@
       <svg v-if="project.image_id == null" class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
       <title>Placeholder</title>
       <rect width="100%" height="100%" fill="#868e96"></rect>
-      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+      <text x="40%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
       </svg>
       <img  v-else v-bind:src="getImgUrl(project.image.image_path)" title=''>
       <div class="card-body">
@@ -68,7 +68,7 @@ export default {
 			async list(page=1){
 	                await axios.get(`/vue_projects?page=${page}`).then(({data})=>{
 	                    this.projects_ = data;
-	                    console.log(data);
+
 	                }).catch(({ response })=>{
 	                    console.error(response)
 	                })

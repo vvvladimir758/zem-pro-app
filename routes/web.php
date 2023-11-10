@@ -10,6 +10,7 @@ use App\Http\Controllers\
     ImageController, 
     TimeSpentController,
 };
+use App\Http\Controllers\StatisticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ use App\Http\Controllers\
 */
 
 Route::get('/', function () {
-    return view('index');
+    return redirect()->route('home');
 });
 
 Auth::routes();
@@ -45,5 +46,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('/images', [ImageController::class, 'index']);
         Route::post('/images/upload', [ImageController::class, 'store']);
+        
+        Route::get('/statistic', [StatisticController::class, 'index'])->name('statistic');
 
 });

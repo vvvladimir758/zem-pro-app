@@ -126,7 +126,7 @@ export default {
 	                await axios.get(`/vue_project/${this.project_id}`).then(({data})=>{
 	                    this.tasks_ = data.tasks;
 	                    this.project = data;
-	                    //console.warn = () => {}
+	                    console.warn = () => {};
 	                    this.isLoaded = true;
 	                    
 	                }).catch(({ response })=>{

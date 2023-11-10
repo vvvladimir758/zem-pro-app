@@ -1,0 +1,29 @@
+{
+  "hash": "5527a83b",
+  "browserHash": "65f4b83d",
+  "optimized": {
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "3d18c965",
+      "needsInterop": false
+    },
+    "bootstrap": {
+      "src": "../../node_modules/bootstrap/dist/js/bootstrap.esm.js",
+      "file": "bootstrap.js",
+      "fileHash": "d5c0ad71",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "fffc8aad",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-SSYGV25P": {
+      "file": "chunk-SSYGV25P.js"
+    }
+  }
+}

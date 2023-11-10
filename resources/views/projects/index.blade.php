@@ -8,7 +8,7 @@
     
     @else
     
-     	@include('projects.list',['projects'=>$projects]);
+     	@include('projects.list');
      
     @endguest
 

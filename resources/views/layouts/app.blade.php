@@ -36,7 +36,7 @@
 							href="{{ route('project.index') }}">{{ __('Проекты') }}</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
-							href="{{ route('project.index') }}">{{ __('Статистика') }}</a>
+							href="{{ route('statistic') }}">{{ __('Статистика') }}</a>
 						</li>
 						@endif
 					</ul>

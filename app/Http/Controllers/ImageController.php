@@ -25,7 +25,7 @@ class ImageController extends Controller
         ]);
 
         $image->save();
-        
+
         return [
             'imagePath' => $imagePath,
             'image_id'  => $image->id

@@ -63,7 +63,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TaskRequest $request, task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $data = [
             'title'       => $request->get('title'),
@@ -81,6 +81,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->destroy($task->id);
     }
 }

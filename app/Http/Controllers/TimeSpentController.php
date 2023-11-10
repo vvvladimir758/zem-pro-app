@@ -62,9 +62,17 @@ class TimeSpentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TimeSpentRequest $request, string $id)
     {
-        //
+        $data = [
+            'time_spent'       => $request->get('time_spent'),
+            'description' => $request->get('description'),
+        ];
+        
+        $ts = TimeSpent::whereId($id);
+        $ts->update($data);
+        
+        return response()->json($data);
     }
 
     /**
@@ -72,6 +80,6 @@ class TimeSpentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        TimeSpent::whereId($id)->delete();
     }
 }

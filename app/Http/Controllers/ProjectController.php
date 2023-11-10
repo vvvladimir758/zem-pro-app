@@ -14,15 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.index',
-            [
-                'projects'=>'',
-                'projects__'=>Project::where('user_id',Auth::id())
-                                        ->with('image')
-                                        ->get()
-                                         
-                
-            ]);
+        return view('projects.index');
     }
     
 
@@ -50,7 +42,7 @@ class ProjectController extends Controller
         if ($request->file()) {
             $data = array_merge($data, $image->store($request));
         }
-       
+        
         $project = Project::create($data);
         $data['id'] = $project->id;
         
@@ -76,13 +68,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, project $project, ImageController $image)
+    public function update(ProjectRequest $request, project $project, ImageController $image)
     {
-        $request->validate([
-            'title' => 'required',
-            'image' => 'image|max:2048'
-        ]);
-        
         $data = [
             'title'       => $request->get('title'),
             'description' => $request->get('description'),
@@ -92,7 +79,11 @@ class ProjectController extends Controller
         if ($request->file()) {
             $data = array_merge($data, $image->store($request));
         }
-           
+        
+        if($request->get('delImg') != 'false'){
+            $data['image_id'] = NULL;
+        }
+      
         $project->update($data);
         
         $data['id'] = $project->id;
@@ -105,7 +96,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-       // dd($project);
         $project->destroy($project->id);
     }
 }
